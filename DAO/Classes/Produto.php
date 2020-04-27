@@ -1,76 +1,161 @@
 <?php
 
-require_once(Sql.php);
+require_once('Sql.php');
 
-class produto{
-    private $idProduto;
-    private $produto;
-    private $preco;
-    private $idCadegoria;
+class Produto{
+	//ORM
+	private $idProduto;
+	private $produto;
+	private $preco;
+	private $idCategoria;
 
-    public function getIdproduto(){
-        return $this->idProduto;
-    }
+	public function getIdproduto(){
+		return $this->idProduto;
+	}
 
-    public function getproduto(){
-        return $this->produto;
-    }
+	public function getProduto(){
+		return $this->produto;
+	}
 
-    public function getpreco(){
-        return $this->preco;
-    }
+	public function getPreco(){
+		return $this->preco;
+	}
 
-    public function getidCadegoria(){
-        return $this->idCadegoria;
-    }
+	public function getIdCategoria(){
+		return $this->idCategoria;
+	}
+
+	public function setIdproduto($idProduto){
+		$this->idProduto = $idProduto;
+	}
+	public function setProduto($produto){
+		$this->produto = $produto;
+	}
+	public function setPreco($preco){
+		$this->preco = $preco;
+	}
+	public function setIdcategoria($idCategoria){
+		$this->idCategoria = $idCategoria;
+	}
 
 
-    public function setpreco($preco){
-        $this->preco = $preco;
-    }
+	public function loadById($idProduto){
+		$sql = new Sql();
 
-    public function setproduto($produto){
-        $this->produto = $produto;
-    }
+		$results = $sql->select("
+					SELECT * FROM produtos 
+					WHERE idProduto=:IDPRODUTO"
+					,[":IDPRODUTO"=>$idProduto]);
 
-    public function setidCadegoria($idCadegoria){
-        $this->idCadegoria= $idCadegoria;
-    }
+		//return $results;
+		if(isset($results[0])){//caso retorne uma linha
+			$row = $results[0];
 
-    public function setIdproduto($idProduto){
-        $this->idProduto = $idProduto;
-    }
+			$this->setIdproduto($row['idProduto']);
+			$this->setProduto($row['produto']);
+			$this->setPreco($row['preco']);
+			$this->setIdcategoria($row['idCategoria']);
 
-    public function loadById($idProduto){
-        $sql = new sql();
+			return true;
+		}
 
-        $sql_>select("SELECT * FROM produtos
-         WHERE idProdutos=:IDPRODUTO",
-        [":IDPRODUTOS"=>$idProduto]);
+		return false;
+	}
 
-        if(!isset($results[0])){
-            $row = $results[0];
+	public function __toString(){
 
-            $this->setidCadegoria($row['idCadegoria']);
-            $this->setIdproduto($row['idProduto']);
-            $this->setpreco($row['preco']);
-            $this->setproduto($row['produto']);
+		$arr = [
+			"idProduto" => $this->getIdproduto(),
+			"produto" => $this->getProduto(),
+			"preco" => $this->getPreco(),
+			"idCategoria"=> $this->getIdCategoria()
+		];
 
-            return true;
-    }
-return false;
+		return json_encode($arr);// converte array => json
+	}
+
+	public static function getList(){
+		$sql = new Sql();
+
+		$arr = $sql->select("SELECT * from pedidos");
+		return json_encode($arr);
+	}
+	public function setData($produto,$preco,$idCategoria){
+
+		$this->setProduto($produto);
+		$this->setPreco($preco);
+		$this->setIdcategoria($idCategoria);
+	}
+
+	public function insert(){
+		$sql = new Sql();
+
+		$sql->query("INSERT INTO produtos(produto,preco,idCategoria)
+				VALUES(:produto,:preco,:idCategoria)
+			",[
+				"produto"=>$this->getProduto(),
+				"preco"=>$this->getPreco(),
+				"idCategoria"=>$this->getIdCategoria()
+			]);
+
+	}
+
+	public function update(){
+
+		$sql = new Sql();
+
+		$sql->query("UPDATE produtos 
+			SET produto =:produto , preco = :preco, idCategoria=:idCategoria WHERE idProduto = :idProduto",
+		[
+			":produto" => $this->getProduto(),
+			":preco" => $this->getPreco(),
+			":idCategoria"=> $this->getIdCategoria(),
+			":idProduto"=>$this->getIdproduto()
+		]);
+	}
+
+	public static function search($produto){
+		$sql = new Sql();
+		$arr = $sql->select("	SELECT * FROM produtos 
+						WHERE produto LIKE :string ORDER BY produto ",
+
+			[
+				":string" => "%".$produto."%"
+			]
+		);
+
+		if(isset($arr[0])){//se a pesquisa retornou um valor
+			$aux = $arr[0];
+
+			$pr = new Produto();
+			$pr->setIdproduto($aux['idProduto']);
+			$pr->setProduto($aux['produto']);
+			$pr->setPreco($aux['preco']);
+			$pr->setIdcategoria($aux['idCategoria']);
+			return $pr;
+
+		}else{
+			return null;
+		}
+	}
+
+	public function delete(){
+
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM detpedidos WHERE idProduto=:idProduto",[
+			":idProduto"=>$this->getIdproduto()
+		]);
+
+		$sql->query("DELETE FROM produtos WHERE idProduto=:idProduto",[
+			":idProduto"=>$this->getIdproduto()
+		]);
+	}
+
+
+
 }
 
-public function _toString(){
-    $arr=[
-       "idCadegoria" => $this->setidCadegoria(),
-       "idProduto" =>  $this->setIdproduto(),
-       "preco" =>  $this->setpreco(),
-       "produto" =>  $this->setproduto()
-    ];
 
-    return json_encode($arr);
-}
-}
 
 ?>

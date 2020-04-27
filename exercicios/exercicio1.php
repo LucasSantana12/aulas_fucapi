@@ -38,7 +38,7 @@ if(!isset($_GET["tabela"])){
 $table = $_GET['tabela'];
 
 
-$conn = new PDO('mysql:dbname=prova;host=127.0.0.1','root','');
+$conn = new PDO('mysql:dbname=aula_php;host=127.0.0.1','root','');
 
 $stmy = $conn-> prepare("SELECT * FROM ".$table);
 $stmy->execute();
