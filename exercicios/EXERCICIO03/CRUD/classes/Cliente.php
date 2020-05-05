@@ -2,7 +2,7 @@
 
 require_once('Sql.php');
 
-class cliente{
+class Cliente{
 	//ORM
 	private $idCliente;
 	private $cliente;

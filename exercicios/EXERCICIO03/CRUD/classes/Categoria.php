@@ -2,7 +2,7 @@
 
 require_once('Sql.php');
 
-class Produto{
+class Categorias{
 	//ORM
     private $idCategoria;
     private $categoria;
@@ -13,7 +13,7 @@ class Produto{
 	}
 
 	public function getcategoria(){
-		return $this->produto;
+		return $this->categoria;
 	}
 
     public function setIdcategoria($idCategoria){
@@ -38,8 +38,8 @@ class Produto{
 		if(isset($results[0])){//caso retorne uma linha
 			$row = $results[0];
 
-			$this->idCategoria($row['idCategoria']);
-			$this->categoria($row['categoria']);
+			$this->setIdcategoria($row['idCategoria']);
+			$this->setcategoria($row['categoria']);
 
 			return true;
 		}
@@ -63,7 +63,7 @@ class Produto{
 	public static function getList(){
 		$sql = new Sql();
 
-		$arr = $sql->select("SELECT * from categoria");
+		$arr = $sql->select("SELECT * from categorias");
 		return $arr;
     }
     

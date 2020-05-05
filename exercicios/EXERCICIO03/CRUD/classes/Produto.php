@@ -77,8 +77,8 @@ class Produto{
 	public static function getList(){
 		$sql = new Sql();
 
-		$arr = $sql->select("SELECT * from produtos");
-		return json_encode($arr);
+		$arr = $sql->select("SELECT * FROM produtos");
+		return $arr;
 	}
 	public function setData($produto,$preco,$idCategoria){
 
@@ -144,7 +144,7 @@ class Produto{
 
 		$sql = new Sql();
 
-		$sql->query("UPDATE detpedidos 
+		$sql->query("UPDATE idCategoria 
 		SET idProdutos =NULL
 		 WHERE idProduto=:idProduto",[
 			":idProduto"=>$this->getIdproduto()
