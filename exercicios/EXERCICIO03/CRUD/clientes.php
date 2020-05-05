@@ -1,3 +1,10 @@
+<?php
+require_once('classes/cliente.php');
+
+$nome = Cliente::getList();
+
+?>
+
 <!DOCTYPE html>
 <!-- saved from url=(0053)https://getbootstrap.com/docs/4.4/examples/dashboard/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -6,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Inicio </title>
+    <title>Clientes</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
@@ -46,9 +53,9 @@
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
   <body cz-shortcut-listen="true">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index.php">Home</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index.php">Company name</a>
 </nav>
-
+<br><br>
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -66,10 +73,7 @@
 
           <li class="nav-item">
             <a class="nav-link" href="produtos.php">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-              width="24" height="24" 
-              viewBox="0 0 24 24" fill="none" 
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
               Produtos
             </a>
           </li>
@@ -87,47 +91,57 @@
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <h2>Clientes</h2>
+      
+
+      <a href="inserir_cliente.php" class="btn btn-success">Adicionar Cliente</a>
+
       <div class="table-responsive">
+
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Ações</th>
+             <?php
+                    foreach($nome[0] as $chave => $valor){
+                        echo "<th>$chave</th>";
+                    }
+             ?>
+             <th>Ações</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>sit</td>
-              <td>
- 
-                <a href="edit-users.php?editId=<?php echo $val['id'];?>" class="text-primary"><i class="fa fa-fw fa-edit"></i> Edit</a> 
-                <a href="delete.php>" class="text-danger" onClick="return confirm('Are you sure to delete this user?');"><i class="fa fa-fw fa-trash"></i> Delete</a>
-              </td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>amet</td>
-              <td>consectetur</td>
-              <td>adipiscing</td>
-              <td>elit</td>
-              <td>
 
-                <a href="edit-users.php?editId=<?php echo $val['id'];?>" class="text-primary"><i class="fa fa-fw fa-edit"></i> Edit</a> 
-                <a href="delete.php>" class="text-danger" onClick="return confirm('Are you sure to delete this user?');"><i class="fa fa-fw fa-trash"></i> Delete</a>
-              </td>
-            </tr>
+          <tbody>
+              <?php
+                 foreach($nome as $linhas){
+                     echo "<tr>";
+                     foreach($linhas as $valor){
+                         echo "<td>$valor</td>";
+                     }
+                     ?>
+ <td>
+ <a href="editar_cliente.php?idCliente=<?php
+ echo $linhas['idCliente']; ?>" 
+ 
+ class="text-primary"><i class="fa fa-fw fa-edit"></i> Edit
+</a> 
+ 
+ <a href="deletar_cliente.php?idCliente=
+ <?php
+ echo $linhas['idCliente'];
+ ?>" 
+ 
+ class="text-danger" onClick="return confirm('Quer remover?');"><i class="fa fa-fw fa-trash"></i> Delete</a>
+</td>
+
+                    <?php
+                     echo "</tr>";
+                 }
+              ?>
+
           </tbody>
         </table>
       </div>
-    
+      
+
     </main>
   </div>
 </div>

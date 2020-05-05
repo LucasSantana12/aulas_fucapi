@@ -1,23 +1,35 @@
 <?php
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    //print_r($_POST);
-    require_once("classes/Produto.php");
 
+    require_once('classes/Cliente.php');
 
-    $prod = new Produto;
-    $prod -> setProduto($_POST["produto"]);
-    $prod->setPreco($_POST['preco']);
+    $cly=new cliente;
+    $cly->setnome($_POST["nome"]);
 
-	  $prod->setIdcategoria($_POST['idCategoria']);
-    $prod -> insert();
-    header('Location: produtos.php');
+    $cly->setemail($_POST["email"]);
 
+    $cly->setcpf($_POST["cpf"]);
+
+    $cly->setsenha($_POST["senha"]);
+
+    $cly->setcidade($_POST["cidade"]);
+
+    $cly->setestado($_POST["estado"]);
+
+    $cly->setcelular($_POST["celular"]);
+
+    print_r($_POST);
+
+    $cli->insert();
+    header('Location: clientes.php');
     exit;
-    
-    
+
 }
 
+
 ?>
+
 
 <!DOCTYPE html>
 <!-- saved from url=(0053)https://getbootstrap.com/docs/4.4/examples/dashboard/ -->
@@ -27,12 +39,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Inicio</title>
-
+    <title>INSERIR CLIENTE</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -68,9 +79,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
   <body cz-shortcut-listen="true">
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="index.php">Home</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://getbootstrap.com/docs/4.4/examples/dashboard/#">Company name</a>
 </nav>
-
+<br><br>
 <div class="container-fluid">
   <div class="row">
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -105,27 +116,41 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <h2>Inserir Categoria</h2>
+      <h2>INSERIR CLIENTE</h2>
 
-      <form class="container" method="post" action = "inserir_produto.php"> 
 
-  <div class="form-group">
-    <label>Produtos</label>
-    <input type="text" class="form-control" id="produto" name="produto" required=true>
-  </div>
+<form class="container" method="post" action = "inserir_cliente.php"> 
+<div class="form-group">
+<label>Nome do Cliente</label>
 
-  <div class="form-group">
-    <label>Preço</label>
-    <input type="text" class="form-control" id="preco" name="preco" required=true>
-  </div>
+<input type="text" class="form-control" id="nome" name="nome" required="true">
 
-  <div class="form-group">
-    <label>Categorias</label>
-    <input type="text" class="form-control" id="idCategoria" name="idCategoria" required=true>
+<label>Email do Cliente</label>
+
+<input type="email" class="form-control" id="email" name="email" required="true">
+
+<label>CPF do Cliente</label>
+
+<input type="text" class="form-control" id="cpf" name="cpf" required="true">
+
+<label>Senha</label>
+
+<input type="text" class="form-control" id="senha" name="senha" required="true">
+
+<label>Cidade</label>
+
+<input type="text" class="form-control" id="cidade" name="cidade" required="true">
+
+<label>Estado</label>
+
+<input type="text" class="form-control" id="estado" name="estado" required="true">
+
+<label>Celular</label>
+
+<input type="text" class="form-control" id="celular" name="celular" required="true">
 
 </div>
-
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+<button type="submit" class="btn btn-success">Cadastrar</button>
 </form>
 
 

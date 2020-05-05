@@ -126,7 +126,7 @@ class Cliente{
 		$sql = new Sql();
 
 		$arr = $sql->select("SELECT * from clientes");
-		return json_encode($arr);
+		return $arr;
 	}
 	public function setData($nome, $cpf, $email, $senha, $cidade, $estado, $celular){
 
@@ -207,6 +207,26 @@ class Cliente{
         else{
 			return null;
 		}
-    }
-}
+	}
+	public function delete(){
+
+		$sql = new Sql();
+
+        $sql->query(
+			"UPDATE pedidos
+			 SET idCliente=NULL 
+			 where idCliente=:idCliente
+			",[
+				":idCliente"=>$this->getIdCliente()
+			]);
+	
+			$sql->query("DELETE FROM clientes WHERE idCliente=:idCliente",[
+				":idCliente"=>$this->getIdCliente()
+			]);
+	}
+	
+	
+	}
+	
+	
 ?>

@@ -1,21 +1,23 @@
 <?php
+require_once('classes/Produto.php');
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    //print_r($_POST);
-    require_once("classes/Produto.php");
+    print_r($_POST);
+    $pro = new Produto;
 
+    $pro->loadById($_POST['idProduto']);
 
-    $prod = new Produto;
-    $prod -> setProduto($_POST["produto"]);
-    $prod->setPreco($_POST['preco']);
+    $pro->setProduto($_POST['produto']);
+    $pro->setPreco($_POST['preco']);
+    $pro->setIdcategoria($_POST['idCategoria']);
+    $pro->update();
 
-	  $prod->setIdcategoria($_POST['idCategoria']);
-    $prod -> insert();
-    header('Location: produtos.php');
-
-    exit;
-    
-    
+    header("Location: produtos.php");
+    exit;   
 }
+
+$pro = new Produto;
+$pro->loadById($_GET['idProduto']);
 
 ?>
 
@@ -105,14 +107,22 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     </nav>
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <h2>Inserir Categoria</h2>
+      <h2>Atualizar Produtos</h2>
 
-      <form class="container" method="post" action = "inserir_produto.php"> 
+      <form class="container" method="post" action = "atualizar_produto.php"> 
 
   <div class="form-group">
-    <label>Produtos</label>
-    <input type="text" class="form-control" id="produto" name="produto" required=true>
+
+  <label>Produtos</label>
+    <input type="text" class="form-control" id="produto" name="idProduto" value="<?php
+    echo $pro->getIdproduto();?>" readonly required=true>
   </div>
+  <div class="form-group">
+    <label>Produtos</label>
+    <input type="text" class="form-control" id="produto" name="produto" value="<?php
+    echo $pro->getProduto();?>" required=true>
+  </div>
+  
 
   <div class="form-group">
     <label>Preço</label>
@@ -125,9 +135,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 </div>
 
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  <button type="submit" class="btn btn-primary">Atualizar</button>
 </form>
-
 
     </main>
   </div>

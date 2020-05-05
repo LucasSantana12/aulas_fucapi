@@ -144,9 +144,10 @@ class Produto{
 
 		$sql = new Sql();
 
-		$sql->query("UPDATE idCategoria 
-		SET idProdutos =NULL
-		 WHERE idProduto=:idProduto",[
+		$sql->query(
+			"UPDATE idCategoria 
+			SET idProdutos =NULL
+		 	WHERE idProduto=:idProduto",[
 			":idProduto"=>$this->getIdproduto()
 		]);
 

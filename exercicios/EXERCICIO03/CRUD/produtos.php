@@ -120,10 +120,10 @@ $produtos = Produto::getList();
               ?>
                 <td>
  
-                  <a href="atualizar_categoria.php?idCategoria=<?php echo $linhas['idCategoria'];?>" 
+                  <a href="atualizar_produto.php?idProduto=<?php echo $linhas['idProduto'];?>" 
                     class="text-primary"><i class="fa fa-fw fa-edit"></i> Editar</a> 
-                  <a href="deletar_produto.php?idCategoria=
-                  <?php echo $linhas['idCategoria'] ?>>" 
+                  <a href="deletar_produto.php?idProduto=
+                  <?php echo $linhas['idProduto'] ?>>" 
                   class="text-danger" onClick="return confirm('Deseja remover?');"><i class="fa fa-fw fa-trash"></i> Delete</a>
                 </td>
               <?php

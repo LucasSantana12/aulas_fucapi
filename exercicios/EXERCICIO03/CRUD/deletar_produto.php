@@ -10,5 +10,6 @@ $prod -> loadById($_GET['idProduto']);
 $prod -> delete();
 
 header('Location: produtos.php');
+exit;
 
 ?>
