@@ -15,11 +15,21 @@
 </div>
     @endif
 
+    @php
+        $i = 1;
+
+        $currentpage = $estudantes->currentPage();
+        $perpage = $estudantes->perPage();
+
+        $i= $perpage*($currentpage-1)+1;
+
+    @endphp
+
     <div class='container'>
     <table class="table">
   <thead class="black white-text">
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">#</th>
       <th scope="col">nome</th>
       <th scope="col">sobrenome</th>
       <th scope="col">email</th>
@@ -30,17 +40,24 @@
 
   @foreach($estudantes as $e)
     <tr>
-      <th scope="row">{{$e->id}}</th>
+      <th scope="row">{{$i}}</th>
       <td>{{$e->nome}}</td>
       <td>{{$e->sobrenome}}</td>
       <td>{{$e->email}}</td>
       <td>{{$e->telefone}}</td>
     </tr>
+
+    @php
+        $i=$i+1;
+    @endphp
     @endforeach
   </tbody>
 </table>
+        <div class="d-flex justify-content-center">
+            {{$estudantes->links()}}
 
+</dib>
 </div>
-    <br><br><br><br><br><br><br><br>
+
 
 @endsection
