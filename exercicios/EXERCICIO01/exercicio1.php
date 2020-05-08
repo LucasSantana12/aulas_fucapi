@@ -43,8 +43,7 @@ $conn = new PDO('mysql:dbname=aula_php;host=127.0.0.1','root','');
 $stmy = $conn-> prepare("SELECT * FROM ".$table);
 $stmy->execute();
 
-$result= $stmy->fetchALL(PDO::FETCH_ASSOC);
-
+$table= $stmy->fetchALL(PDO::FETCH_ASSOC);
 
 
 if(count($result)){
@@ -52,7 +51,7 @@ echo '<br/>';
 echo "<h1>Tabela de $table</h1>";
 
 foreach($result as $linha){
-    echo"-------------"."<br>";
+    echo "<table border='1' style='width:100%'>";
     foreach($linha as $chave => $valor){
         echo $chave.":".$valor;
         echo'<br/>';
@@ -61,7 +60,7 @@ foreach($result as $linha){
     
 
     
-}; echo"-------------";
+}; echo "</table>";
 }else{
     echo "<h1>Tabela Inexistente</h1>";
 }

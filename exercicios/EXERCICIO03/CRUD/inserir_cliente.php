@@ -19,9 +19,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     $cly->setcelular($_POST["celular"]);
 
-    print_r($_POST);
-
-    $cli->insert();
+    $cly->insert();
     header('Location: clientes.php');
     exit;
 

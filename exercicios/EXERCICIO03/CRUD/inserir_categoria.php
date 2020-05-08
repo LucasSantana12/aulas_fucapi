@@ -6,6 +6,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $cat = new Categorias;
     $cat -> setCategoria($_POST["categoria"]);
     $cat -> insert();
+    header('Location: categorias.php');
+
     exit;
 }
 

@@ -31,7 +31,7 @@ class Cliente{
     }
     
     public function getsenha(){
-		return $this->idCliente;
+		return $this->senha;
     }
     public function getcidade(){
 		return $this->cidade;
@@ -144,7 +144,7 @@ class Cliente{
 
 	public function insert(){
 		$sql = new Sql();
-
+		
 		$sql->query("INSERT INTO clientes(nome, cpf, email, senha, cidade, estado, celular)
 				VALUES(:nome,:cpf,:email,:senha,:cidade,:estado,:celular)
 
@@ -157,6 +157,7 @@ class Cliente{
                 "estado"=>$this->getestado(),
                 "celular"=>$this->getcelular()
 			]);
+			
 
 	}
 
