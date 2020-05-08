@@ -3,7 +3,7 @@
 
 
 <div class="container">
-    <br>
+    <h1>Inserção</h1>
 
     @if ($errors->any())
         @foreach($errors->all() as $errors)
@@ -19,9 +19,9 @@
     @endif
 
     <!-- Default form register -->
-<form class="text-center border border-light p-5" action="{{ route('store') }}" method="post">
+<form class="text-center border border-light p-5" action="{{ route('update',$e->id) }}" method="post">
 {{csrf_field() }}
-<p class="h4 mb-4">Atualizar Estudante</p>
+<p class="h4 mb-4">Cadastro do Estudante</p>
 
 <div class="form-row mb-4">
     <div class="col">
@@ -44,7 +44,7 @@
 
 
 <!-- Sign up button -->
-<button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+<button class="btn btn-info my-4 btn-block" type="submit">Atualizar </button>
 
 
 </form>

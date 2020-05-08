@@ -34,6 +34,7 @@
       <th scope="col">sobrenome</th>
       <th scope="col">email</th>
       <th scope="col">telefone</th>
+      <th scope="col">ação</th>
     </tr>
   </thead>
   <tbody>
@@ -45,11 +46,21 @@
       <td>{{$e->sobrenome}}</td>
       <td>{{$e->email}}</td>
       <td>{{$e->telefone}}</td>
+      <td>
+      <a href="{{route('edit',$e->id)}}">
+        <i class="fas fa-edit">Editar</i>
+</a>
+<a href="">
+        <i class="fas fa-edit">Deletar</i>
+</a>
+
+</td>
     </tr>
 
     @php
         $i=$i+1;
     @endphp
+
     @endforeach
   </tbody>
 </table>

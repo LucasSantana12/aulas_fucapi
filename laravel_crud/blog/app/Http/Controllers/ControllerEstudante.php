@@ -37,6 +37,31 @@ class ControllerEstudante extends Controller
         $e-> telefone = $request -> telefone;
         $e->save();
 
-        return redirect(route('home'))->with('successMsg','Estudante Inserido');
+        return redirect(route('/'))->with('successMsg','Estudante Inserido');
+    }
+    public function edit($id){
+        $e = Estudante::find($id);
+
+        return view('edit',compact('e'));
+    }
+
+    public function update(Request $request, $id){
+
+        $this-> validate($request, [
+            "nome"=>'required',
+            "sobrenome"=>'required',
+            "email"=>'required',
+            "telefone"=>'required'
+
+        ]);
+
+        $e = Estudante::find($id);
+        $e-> nome =$request-> nome;
+        $e-> sobrenome = $request -> sobrenome;
+        $e-> email = $request -> email;
+        $e-> telefone = $request -> telefone;
+        $e->save();
+
+        return redirect(route('/'))->with('successMsg','Estudante Atualizado');
     }
 }
