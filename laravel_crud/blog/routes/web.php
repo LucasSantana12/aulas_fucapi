@@ -21,6 +21,8 @@ Route::get('/create','ControllerEstudante@create')->name('create');
 Route::post('/create', 'ControllerEstudante@store')->name('store');
 Route::get('/edit/{id}', 'ControllerEstudante@edit')->name('edit');
 Route::post('/update/{id}', 'ControllerEstudante@update')->name('update');
+//Route::get('/delete/{id}', 'ControllerEstudante@delete')->name('delete');
+Route::post('/delete/{id}', 'ControllerEstudante@delete')->name('delete');
 
 Route::get('/teste','TestController@index');
 Route::get('/hello',function(){

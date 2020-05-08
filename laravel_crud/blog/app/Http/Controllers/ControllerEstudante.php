@@ -37,7 +37,7 @@ class ControllerEstudante extends Controller
         $e-> telefone = $request -> telefone;
         $e->save();
 
-        return redirect(route('/'))->with('successMsg','Estudante Inserido');
+        return redirect(route('home'))->with('successMsg','Estudante Inserido');
     }
     public function edit($id){
         $e = Estudante::find($id);
@@ -62,6 +62,14 @@ class ControllerEstudante extends Controller
         $e-> telefone = $request -> telefone;
         $e->save();
 
-        return redirect(route('/'))->with('successMsg','Estudante Atualizado');
+        return redirect(route('home'))->with('successMsg','Estudante Atualizado');
+    }
+
+    public function delete($id){
+        Estudante::find($id)->delete();
+
+
+        return redirect(route('home'))->with('successMsg','Estudante Deletado');
+
     }
 }

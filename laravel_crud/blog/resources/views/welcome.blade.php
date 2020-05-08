@@ -50,8 +50,16 @@
       <a href="{{route('edit',$e->id)}}">
         <i class="fas fa-edit">Editar</i>
 </a>
-<a href="">
-        <i class="fas fa-edit">Deletar</i>
+    <form method="post" id="delete-form-{{$e->id}}" action="{{route('delete',$e->id)}}>">
+    {{ csrf_field() }}
+    </form>
+    <a onclick="
+        if(confirm('Voce tem certeza que quer deletar?')){
+            document.getElementById('delete-form-{{$e->id}}').submit();
+        }
+
+        " >
+        <i class="fas fa-trash-alt">Deletar</i>
 </a>
 
 </td>
