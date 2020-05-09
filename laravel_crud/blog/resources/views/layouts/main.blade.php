@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-Br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,9 @@
 
   <!-- Start your project here-->
     @include('layouts.navbar')
+    <br>
     @yield('content')
+    <br><br><br><br><br><br>
     @include('layouts.footer')
   <!-- End your project here-->
 

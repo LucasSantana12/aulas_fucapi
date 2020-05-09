@@ -26,21 +26,21 @@
 <div class="form-row mb-4">
     <div class="col">
         <!-- First name -->
-        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nome" value="{{$e->nome}}" name="nome">
+        <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Nome" name="nome">
     </div>
     <div class="col">
         <!-- Last name -->
-        <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Sobrenome" value="{{$e->sobrenome}}" name="sobrenome">
+        <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Sobrenome" name="sobrenome">
     </div>
 </div>
 
 <!-- E-mail -->
-<input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" value="{{$e->email}}" name="email">
+<input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email">
 
 
 
 <!-- Phone number -->
-<input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Telefone" aria-describedby="defaultRegisterFormPhoneHelpBlock" value="{{$e->telefone}}" name="telefone">
+<input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Telefone" aria-describedby="defaultRegisterFormPhoneHelpBlock" name="telefone">
 
 
 <!-- Sign up button -->

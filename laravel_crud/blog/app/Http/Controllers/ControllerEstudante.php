@@ -8,6 +8,10 @@ class ControllerEstudante extends Controller
 {
     //
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
 
        // $estudantes = Estudante::all();
@@ -37,7 +41,7 @@ class ControllerEstudante extends Controller
         $e-> telefone = $request -> telefone;
         $e->save();
 
-        return redirect(route('home'))->with('successMsg','Estudante Inserido');
+        return redirect(route('home1'))->with('successMsg','Estudante Inserido');
     }
     public function edit($id){
         $e = Estudante::find($id);
@@ -62,14 +66,14 @@ class ControllerEstudante extends Controller
         $e-> telefone = $request -> telefone;
         $e->save();
 
-        return redirect(route('home'))->with('successMsg','Estudante Atualizado');
+        return redirect(route('home1'))->with('successMsg','Estudante Atualizado');
     }
 
     public function delete($id){
         Estudante::find($id)->delete();
 
 
-        return redirect(route('home'))->with('successMsg','Estudante Deletado');
+        return redirect(route('home1'))->with('successMsg','Estudante Deletado');
 
     }
 }

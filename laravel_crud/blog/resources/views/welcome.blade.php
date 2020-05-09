@@ -1,8 +1,8 @@
 @extends('layouts.main')
 @section('content')
 
-    <h1>PAGINA INICIAL</h1>
-
+    <center><h1 >Pagina Incial</h1></center>
+    <br>
     @if(session('successMsg'))
     <div class="alert alert-success" role="alert">
   {{session('successMsg')}}

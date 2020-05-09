@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/','ControllerEstudante@index')->name('home');
+Route::get('/','ControllerEstudante@index')->name('home1');
 Route::get('/create','ControllerEstudante@create')->name('create');
 Route::post('/create', 'ControllerEstudante@store')->name('store');
 Route::get('/edit/{id}', 'ControllerEstudante@edit')->name('edit');
@@ -37,4 +37,6 @@ Route::get('/users/{id}',function($id){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ControllerEstudante@index')->name('home');
+Route::get('/change-password','Auth\ChangePasswordController@index')->name('passwords.change');
+Route::post('/change-password','Auth\ChangePasswordController@update')->name('passwords.update');
